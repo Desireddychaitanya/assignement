@@ -9,8 +9,9 @@
 #nav {
 	background-color: #494949;
 	margin: 0;
-	/*padding: 0;*/
+	padding: 0;
 	display: none;
+	border: 1px;
 }
 
 #nav2 {
