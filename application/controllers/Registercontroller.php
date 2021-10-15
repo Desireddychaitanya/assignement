@@ -75,6 +75,7 @@ class Registercontroller extends CI_Controller {
         $this->form_validation->set_rules('option2', 'option2', 'required');
         $this->form_validation->set_rules('option3', 'option3', 'required');
         $this->form_validation->set_rules('option4', 'option4', 'required');
+        $this->form_validation->set_rules('marks', 'marks', 'required');
 
             if ($this->form_validation->run() == FALSE) 
             {
@@ -89,12 +90,14 @@ class Registercontroller extends CI_Controller {
             $option2 = trim($this->input->post('option2'));
             $option3 = trim($this->input->post('option3'));
             $option4 = trim($this->input->post('option4')); 
+            $marks = trim($this->input->post('marks')); 
             $data=array(
             'question'=>$question,
             'option1'=>$option1,
             'option2'=>$option2,
             'option3'=>$option3,
             'option4'=>$option4,
+            'marks'=>$marks
             );
 
            

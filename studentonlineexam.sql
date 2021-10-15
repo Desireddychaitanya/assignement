@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2021 at 07:18 AM
+-- Generation Time: Oct 15, 2021 at 07:32 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -33,16 +33,18 @@ CREATE TABLE `questions` (
   `option1` varchar(100) NOT NULL,
   `option2` varchar(100) NOT NULL,
   `option3` varchar(100) NOT NULL,
-  `option4` varchar(100) NOT NULL
+  `option4` varchar(100) NOT NULL,
+  `marks` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`question`, `option1`, `option2`, `option3`, `option4`) VALUES
-('what is the distance?', '9', '6', 'uy', 'jhg'),
-('what is the distance?', '9', '6', 'uy', 'jhg');
+INSERT INTO `questions` (`question`, `option1`, `option2`, `option3`, `option4`, `marks`) VALUES
+('what is the distance?', '9', '6', 'uy', 'jhg', 0),
+('what is the distance?', '9', '6', 'uy', 'jhg', 0),
+('what is the distance?', '9', '54', '65', 'yt', 54);
 
 -- --------------------------------------------------------
 

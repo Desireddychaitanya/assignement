@@ -12,11 +12,16 @@
   </head>
   <body>
     <div class="container" style="transform: translateY(20vh);">
+        <?php echo validation_errors('<div class="alert alert-danger">', '</div>') ?>
+      <?php echo $this->session->flashdata('error') ?>
         <?php echo form_open('registercontroller/questionsadded') ?>
   <div class="form-group row">
     <label for="question" class="col-sm-2 col-form-label">Add question</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="question" placeholder="enter question" name="question">
+    </div>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="marks" placeholder="enter marks" name="marks">
     </div>
   </div>
    <div class="form-group row">
@@ -28,7 +33,7 @@
    <div class="form-group row">
     <label for="option2" class="col-sm-2 col-form-label">Option 2</label>
     <div class="col-sm-6">
-      <input type="password" class="form-control" id="option2" placeholder="" name="option2">
+      <input type="text" class="form-control" id="option2" placeholder="" name="option2">
     </div>
   </div>
   <div class="form-group row">
