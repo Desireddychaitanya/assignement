@@ -18,9 +18,16 @@
   <body>
     <div class="container" style="transform: translateY(50%);">
    
-    <?php echo form_open('registercontroller/loginsuccess') ?>
+    <?php echo form_open('registercontroller/loginvalidate') ?>
      <h1 style="text-align: center;">sign in now</h1>
+     <div class="row">
+      <?php echo validation_errors('<div class="alert alert-danger">', '</div>') ?>
+      <?php echo $this->session->flashdata('error') ?>
+       
+     </div>
+     
     <div class="row" style="flex-direction: column; align-items: center;">
+      
   <div class="form-group  col-md-6">
     <label for="exampleInputEmail1">Email</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
