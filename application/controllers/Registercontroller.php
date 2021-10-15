@@ -38,8 +38,8 @@ class Registercontroller extends CI_Controller {
             $firstname = trim($this->input->post('firstname'));
             $lastname = trim($this->input->post('lastname'));
             $email = trim($this->input->post('email'));
-            $password = trim($this->input->post('password'));
-            $confirmpassword = trim($this->input->post('confirmpassword'));
+            $password = md5($this->input->post('password'));
+            $confirmpassword = md5($this->input->post('confirmpassword'));
             $phonenumber = trim($this->input->post('phonenumber')); 
             $city = trim($this->input->post('city'));
             $checkbox = $this->input->post('checkbox');
@@ -67,10 +67,6 @@ $data=array(
             }
           
 	}
-	public function loginsuccess()
-	{
-		echo " sucessfully login"; 
-	}
 	public function questionsadded()
 	{
 		echo " added questions";
@@ -83,6 +79,44 @@ $data=array(
 	{
 		$this->load->view('questions');
 	}
+    public function loginvalidate()
+    {
+       
+        $this->form_validation->set_rules('email', 'Email ID', 'valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        
+            if ($this->form_validation->run() == FALSE) 
+            {
+
+             $this->load->view('loginforstudent');
+            }
+            if ($this->form_validation->run() == TRUE) 
+            {
+
+            $email = trim($this->input->post('email'));
+            $password = trim($this->input->post('password'));
+
+            $this->load->model('signin');
+            $res = $this->signin->check_entered_details($email,$password);
+            // print_r($res[0]['email']);
+
+
+           
+
+            if($res[0]['email'] == $email && $res[0]['password'] == md5($password))
+            {
+               echo " valid details";
+            } 
+            else {
+                $this->session->set_flashdata('error', '<div class="alert alert-danger">Invalid Username or Password.</div>');
+                $this->load->view('loginforstudent');
+                
+            }
+
+
+
+            }
+    }
 
 
 }
