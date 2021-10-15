@@ -20,7 +20,7 @@ class Registercontroller extends CI_Controller {
 	{
 		$this->form_validation->set_rules('firstname', 'FirstName', 'trim|required');
 		$this->form_validation->set_rules('lastname', 'lastName', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email ID', 'valid_email');
+        $this->form_validation->set_rules('email', 'Email ID', 'valid_email|required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('confirmpassword', 'confirm Password', 'required|matches[password]');
         $this->form_validation->set_rules('phonenumber', 'phone number', 'required');
@@ -43,16 +43,16 @@ class Registercontroller extends CI_Controller {
             $phonenumber = trim($this->input->post('phonenumber')); 
             $city = trim($this->input->post('city'));
             $checkbox = $this->input->post('checkbox');
-            
-$data=array(
-'firstname'=>$firstname,
-'lastname'=>$lastname,
-'email'=>$email,
-'password'=>$password,
-'confirmpassword'=>$confirmpassword,
-'phonenumber'=>$phonenumber,
-'city'=>$city,
-'gender'=>$checkbox,);
+                        
+            $data=array(
+            'firstname'=>$firstname,
+            'lastname'=>$lastname,
+            'email'=>$email,
+            'password'=>$password,
+            'confirmpassword'=>$confirmpassword,
+            'phonenumber'=>$phonenumber,
+            'city'=>$city,
+            'gender'=>$checkbox,);
 
 
 
@@ -69,7 +69,45 @@ $data=array(
 	}
 	public function questionsadded()
 	{
-		echo " added questions";
+
+        $this->form_validation->set_rules('question', 'question','required');
+        $this->form_validation->set_rules('option1', 'option1', 'required');
+        $this->form_validation->set_rules('option2', 'option2', 'required');
+        $this->form_validation->set_rules('option3', 'option3', 'required');
+        $this->form_validation->set_rules('option4', 'option4', 'required');
+
+            if ($this->form_validation->run() == FALSE) 
+            {
+
+             $this->load->view('questions');
+            }
+            if ($this->form_validation->run() == TRUE) 
+            {
+                //$data['t1'] = time();
+            $question = trim($this->input->post('question'));
+            $option1 = trim($this->input->post('option1'));
+            $option2 = trim($this->input->post('option2'));
+            $option3 = trim($this->input->post('option3'));
+            $option4 = trim($this->input->post('option4')); 
+            $data=array(
+            'question'=>$question,
+            'option1'=>$option1,
+            'option2'=>$option2,
+            'option3'=>$option3,
+            'option4'=>$option4,
+            );
+
+           
+          
+            $this->Addin->questionsadded($data);
+
+
+
+
+
+
+                echo "questions added";
+            }   
 	}
 	public function signin()
 	{
@@ -82,7 +120,7 @@ $data=array(
     public function loginvalidate()
     {
        
-        $this->form_validation->set_rules('email', 'Email ID', 'valid_email');
+        $this->form_validation->set_rules('email', 'Email ID', 'valid_email|required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         
             if ($this->form_validation->run() == FALSE) 

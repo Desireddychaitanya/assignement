@@ -17,11 +17,13 @@ class Addin extends CI_Model
 
     public function insertin($data)
     {
-
-	 
               $this->db->insert('register', $data);
               echo "successfully register";
+    }
 
-
+    public function questionsadded($data)
+    {
+              $this->db->insert('questions', $data);
+              echo "successfully added questions";
     }
 }
