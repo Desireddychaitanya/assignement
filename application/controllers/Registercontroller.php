@@ -6,6 +6,7 @@ class Registercontroller extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('Addin');
+        $this->load->model('Getrows');
        
        
        
@@ -16,6 +17,32 @@ class Registercontroller extends CI_Controller {
 	{
 		$this->load->view('register'); 
 	}
+    public function exam_new()
+    {
+       $this->load->view('takeexam');        
+    }
+    public function exam()
+    {
+       $this->load->library('pagination');
+       $config['base_url'] = base_url('Registercontroller/exam');
+       $config['total_rows'] = $this->Getrows->get_rows();
+       $config['per_page'] = 1;
+
+       $this->pagination->initialize($config);
+       $data['questions'] = $this->Getrows->get_data($config['per_page'],$this->uri->segment(3));
+
+        $this->load->view('takeexam1',$data);
+
+
+    }
+    public function signin()
+    {
+        $this->load->view('loginforstudent'); 
+    }
+    public function addquestions()
+    {
+        $this->load->view('questions');
+    }
 	public function registersuccess()
 	{
 		$this->form_validation->set_rules('firstname', 'FirstName', 'trim|required');
@@ -76,6 +103,8 @@ class Registercontroller extends CI_Controller {
         $this->form_validation->set_rules('option3', 'option3', 'required');
         $this->form_validation->set_rules('option4', 'option4', 'required');
         $this->form_validation->set_rules('marks', 'marks', 'required');
+        $this->form_validation->set_rules('negativemarks', 'negativemarks', 'required');
+        $this->form_validation->set_rules('answer', 'answer', 'required');
 
             if ($this->form_validation->run() == FALSE) 
             {
@@ -91,13 +120,17 @@ class Registercontroller extends CI_Controller {
             $option3 = trim($this->input->post('option3'));
             $option4 = trim($this->input->post('option4')); 
             $marks = trim($this->input->post('marks')); 
+            $negativemarks = trim($this->input->post('negativemarks')); 
+            $answer = trim($this->input->post('answer')); 
             $data=array(
             'question'=>$question,
             'option1'=>$option1,
             'option2'=>$option2,
             'option3'=>$option3,
             'option4'=>$option4,
-            'marks'=>$marks
+            'marks'=>$marks,
+            'negativemarks'=>$negativemarks,
+            'answer'=>$answer,
             );
 
            
@@ -112,14 +145,7 @@ class Registercontroller extends CI_Controller {
                 echo "questions added";
             }   
 	}
-	public function signin()
-	{
-		$this->load->view('loginforstudent'); 
-	}
-	public function addquestions()
-	{
-		$this->load->view('questions');
-	}
+	
     public function loginvalidate()
     {
        

@@ -10,6 +10,7 @@ class Addin extends CI_Model
         parent::__construct();
         $this->load->library('session');
         $this->load->database();
+
        
        
     }
@@ -25,5 +26,25 @@ class Addin extends CI_Model
     {
               $this->db->insert('questions', $data);
               echo "successfully added questions";
+    }
+    public function answer($data)
+    {
+        print_r($data['answer']);
+        print_r($data['questionid']);
+
+     $query= $this->db->query("select * from answers where questionid=".$data['questionid']  );
+    if ($query->num_rows() == 0) 
+    {
+     $r = $this->db->insert('answers', $data);
+       return $r;
+    } 
+    else 
+    {
+             $this->db->where('questionid', $data['questionid']);
+            $r = $this->db->update('answers', $data);
+            return $r;
+       
+    } 
+        
     }
 }

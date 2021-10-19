@@ -23,6 +23,15 @@
     <div class="col-sm-2">
       <input type="number" class="form-control" id="marks" placeholder="enter marks" name="marks">
     </div>
+     <div class="col-sm-2">
+      <input type="number" class="form-control" id="marks" placeholder="negative marks" name="negativemarks">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="answer" class="col-sm-2 col-form-label">Aswer</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="answer" placeholder="enter answer" name="answer">
+    </div>
   </div>
    <div class="form-group row">
     <label for="option1" class="col-sm-2 col-form-label">Option 1</label>
