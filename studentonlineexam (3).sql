@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2021 at 08:43 AM
+-- Generation Time: Oct 20, 2021 at 08:17 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -141,6 +141,28 @@ CREATE TABLE `signup` (
   `expdate` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `storeapi`
+--
+
+CREATE TABLE `storeapi` (
+  `id` int(20) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `email` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `storeapi`
+--
+
+INSERT INTO `storeapi` (`id`, `first_name`, `last_name`, `phone`, `email`) VALUES
+(2, 'uuuuuuuuuuuuuuuua', 'chaitu', 9542012562, 'chaitanya@gmail.com'),
+(3, 'fundaw', 'gettt', 2147483647, 'chaitanya@gmail.com');
+
 --
 -- Indexes for dumped tables
 --
@@ -170,6 +192,12 @@ ALTER TABLE `register`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `storeapi`
+--
+ALTER TABLE `storeapi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -196,6 +224,12 @@ ALTER TABLE `questions`
 --
 ALTER TABLE `register`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `storeapi`
+--
+ALTER TABLE `storeapi`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
