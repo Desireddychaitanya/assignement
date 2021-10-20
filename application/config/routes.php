@@ -53,4 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['api/demo'] = 'api/ApiDemoController/index';
+$route['api/employee'] = 'api/ApiEmployeeController/index';
+$route['api/employee/store'] = 'api/ApiDemoController/storeEmployee';
+$route['api/employee/edit/(:any)'] ='api/ApiEmployeeController/findEmployee/$1';
+$route['api/employee/update/(:any)'] ='api/ApiEmployeeController/updateEmployee/$1';
+$route['api/employee/delete/(:any)'] ='api/ApiEmployeeController/deleteEmployee/$1';
 
