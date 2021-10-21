@@ -27,5 +27,15 @@ class Getrows extends CI_Model
       return $q->result();
 
     }
+    public function correct_answers()
+    {
+      $q = $this->db->get('questions')->result();
+      foreach ($q as $value) {
+
+         print_r($value->sn);
+
+         print_r($value->answer);
+       } 
+    }
 
 }

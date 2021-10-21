@@ -17,8 +17,8 @@
     </thead>
     <tbody>  
       <?php   
-$i=5;
-      $this->db->where(array('sn <'=>$i)); 
+// $i=5;
+//       $this->db->where(array('sn ')); 
       $questions = $this->db->get('questions')->result();?>
                 <!-- <?php print_r($questions);  ?> -->
     <?php $count = $this->db->query("select count(*) as count from questions ")->result_array();  

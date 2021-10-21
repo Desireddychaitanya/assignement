@@ -23,10 +23,6 @@ class checkboxcontroller extends CI_Controller
 	{
 		$this->load->view('checkbox');
 	}
-	public function jscheckbox()
-	{
-		$this->load->view('jscheckbox');
-	}
 	public function randompassword()
 	{
 		$this->load->view('randompassword');
@@ -35,7 +31,8 @@ class checkboxcontroller extends CI_Controller
 	{
 		$r=$this->input->post();
 		print_r($r);
-		echo "string";
+		//echo "string"; 
+		$correct_answers = $this->Getrows->correct_answers($r);
 		
 		// $questionnumber = $this->input->post('questionid');
 		// print_r($questionnumber[0]);
