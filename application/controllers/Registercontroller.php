@@ -4,6 +4,7 @@ class Registercontroller extends CI_Controller {
 	 public function __construct()
     {
         parent::__construct();
+        
         $this->load->library('session');
         $this->load->model('Addin');
         $this->load->model('Getrows');
@@ -13,7 +14,13 @@ class Registercontroller extends CI_Controller {
     }
 
 
-	public function index()
+    public function index()
+    {
+       $this->load->view('homepage');
+    }
+
+
+	public function register()
 	{
 		$this->load->view('register'); 
 	}
@@ -21,20 +28,20 @@ class Registercontroller extends CI_Controller {
     {
        $this->load->view('takeexam');        
     }
-    public function exam()
-    {
-       $this->load->library('pagination');
-       $config['base_url'] = base_url('Registercontroller/exam');
-       $config['total_rows'] = $this->Getrows->get_rows();
-       $config['per_page'] = 1;
+    // public function exam()
+    // {
+    //    $this->load->library('pagination');
+    //    $config['base_url'] = base_url('Registercontroller/exam');
+    //    $config['total_rows'] = $this->Getrows->get_rows();
+    //    $config['per_page'] = 1;
 
-       $this->pagination->initialize($config);
-       $data['questions'] = $this->Getrows->get_data($config['per_page'],$this->uri->segment(3));
+    //    $this->pagination->initialize($config);
+    //    $data['questions'] = $this->Getrows->get_data($config['per_page'],$this->uri->segment(3));
 
-        $this->load->view('takeexam1',$data);
+    //     $this->load->view('takeexam1',$data);
 
 
-    }
+    // }
     public function signin()
     {
         $this->load->view('loginforstudent'); 
@@ -47,7 +54,7 @@ class Registercontroller extends CI_Controller {
 	{
 		$this->form_validation->set_rules('firstname', 'FirstName', 'trim|required');
 		$this->form_validation->set_rules('lastname', 'lastName', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email ID', 'valid_email|required');
+        $this->form_validation->set_rules('email', 'Email ID', 'valid_email|is_unique[register.email]required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('confirmpassword', 'confirm Password', 'required|matches[password]');
         $this->form_validation->set_rules('phonenumber', 'phone number', 'required');
@@ -80,15 +87,6 @@ class Registercontroller extends CI_Controller {
             'phonenumber'=>$phonenumber,
             'city'=>$city,
             'gender'=>$checkbox,);
-
-
-
-
-            $this->session->set_userdata('_firstname_', $data['firstname']);
-            $this->session->set_userdata('_last_name_', $data['lastname']);
-            $this->session->set_userdata('_email_', $data['email']);
-           
-          
             $this->Addin->insertin($data);
 
             }
@@ -162,18 +160,28 @@ class Registercontroller extends CI_Controller {
 
             $email = trim($this->input->post('email'));
             $password = trim($this->input->post('password'));
+         
 
             $this->load->model('signin');
             $res = $this->signin->check_entered_details($email,$password);
-            // print_r($res[0]['email']);
+
 
 
            
-
+          if (!empty($res)) 
+          {
+            
+          
             if($res[0]['email'] == $email && $res[0]['password'] == md5($password))
             {
+               
+            
+            $this->session->set_userdata('_email_', $email);
                echo " valid details";
+               redirect(base_url('Registercontroller/exam_new'));
+
             } 
+        }
             else {
                 $this->session->set_flashdata('error', '<div class="alert alert-danger">Invalid Username or Password.</div>');
                 $this->load->view('loginforstudent');

@@ -68,7 +68,7 @@ use PHPMailer\PHPMailer\PHPMailer;
                             $mail->From = "support@rathorji.in";
                             $mail->FromName = "Rathorji PHP Tutorial";
 
-                            $mail->Subject = $subject;
+                            $mail->Subject = $subject;`
                             $mail->Body = $body;
                             $mail->AddAddress($email_to);
                             if (!$mail->Send()) {

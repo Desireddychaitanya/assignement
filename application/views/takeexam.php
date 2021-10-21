@@ -1,4 +1,6 @@
-    <title>Questions</title>
+    
+    <?php include 'assests/header.php' ?>
+<title>Questions</title>
   </head>
   <body>
     
@@ -47,12 +49,12 @@ $i=5;
     
     </tbody>
 
-    <tr>
+   <!--  <tr>
         <td></td>
         <td><input type="button" name="" value="previous"> </td>
          <td><input type="button" name="" value="next" onclick="function increment()"> </td>
     </tr>
-     
+ -->     
     <tr>
         <td></td>
         <td><input type="submit" name=""></td>

@@ -21,6 +21,7 @@ class Signin extends CI_Model
  // print_r($password);
             
         $getdata=$this->db->query("select * from register where email= '".$email."' and password = '".md5($password)."' ")->result_array();
+        // print_r($getdata);
                     
                      // print_r($getdata[0]->email);
                      // print_r($getdata[0]->password);
